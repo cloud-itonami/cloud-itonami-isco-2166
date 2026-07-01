@@ -1,0 +1,10 @@
+{:itonami.blueprint/id "cloud-itonami-isco-2166"
+ :itonami.blueprint/name "Independent Graphic Design Studio"
+ :itonami.blueprint/isco-08 "2166"
+ :itonami.blueprint/domain :technology/graphic-design
+ :itonami.blueprint/license "AGPL-3.0-or-later"
+ :itonami.blueprint/social-impact [:local-jobs :data-sovereignty :creative-livelihoods]
+ :itonami.blueprint/governor :graphic-design-governor
+ :itonami.blueprint/robotics true
+ :itonami.blueprint/required-technologies [:robotics :identity :forms :dmn :bpmn :audit-ledger]
+ :itonami.blueprint/status :public-oss}
