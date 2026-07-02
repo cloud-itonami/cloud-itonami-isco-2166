@@ -42,6 +42,24 @@ Resolves via [`kotoba-lang/occupation`](https://github.com/kotoba-lang/occupatio
 - :bpmn
 - :audit-ledger
 
+## Reference actor (`:maturity :implemented`)
+
+Full itonami Actor pattern (like
+[`cloud-itonami-isco-6130`](https://github.com/cloud-itonami/cloud-itonami-isco-6130) /
+[`-2652`](https://github.com/cloud-itonami/cloud-itonami-isco-2652)): a real
+[`kotoba-lang/langgraph`](https://github.com/kotoba-lang/langgraph)
+`StateGraph` with Advisor and Governor as distinct nodes and human-in-the-loop
+interrupt/resume.
+
+- HARD → `:hold`: unregistered project, non-`:propose` effect.
+- ESCALATE → `:request-approval` (human-signed): any asset outside the
+  project's licensed set (license verification), client brand-guideline
+  overrides, low confidence.
+
+```bash
+clojure -M:test
+```
+
 See [`docs/business-model.md`](docs/business-model.md) and
 [`docs/operator-guide.md`](docs/operator-guide.md).
 
