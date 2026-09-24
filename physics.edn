@@ -1,0 +1,32 @@
+;; What this vertical's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:physics` runs it.
+;;
+;; README "Robotics premise": a print-proofing robot performs physical proof
+;; printing, material handling and print-quality scanning for graphic and
+;; multimedia designers (ISCO 2166). The physical work: loading paper into the
+;; proof printer, and pushing a cart of paper reels to the large-format press.
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+;; Replacing an estimate with a sourced value is this bot's growth work.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isco-2166"
+ :cases
+ [{:id :paper-ream-load
+   :kind :manipulator
+   :procedure "arm lifts reams of proofing paper from the cart into the printer's high-capacity tray"
+   :params {:l1-m 0.45 :l2-m 0.40 :m1-kg 4.0 :m2-kg 3.0
+            :from [0.50 0.15] :to [0.55 -0.15] :duration-s 2.0 :steps 500}
+   :sweep {:param :payload-kg :values [2.5 5.0 7.5 10.0 12.5]}
+   :quantity :peak-tau1-nm
+   :limit {:max 60.0 :basis "estimate: continuous shoulder torque of a light collaborative arm (~5 kg class)"}
+   :boundary {:lo 0.5 :hi 30.0}}
+  {:id :reel-cart-to-press
+   :kind :transport
+   :procedure "robot pushes a cart of paper reels 40 m from the store to the large-format press"
+   :params {:mass-kg 60.0 :distance-m 40.0 :v-max-mps 0.8 :a-max-mps2 0.4
+            :brake-decel-mps2 1.0 :drive-force-n 150.0 :crr 0.02
+            :cog-height-m 0.6 :support-half-length-m 0.35}
+   :sweep {:param :payload-kg :values [50.0 150.0 300.0 450.0 600.0]}
+   :quantity :cycle-time-s
+   :limit {:max 90.0 :basis "estimate: a reel change must land within the press's 90-second make-ready slot for the leg"}
+   :boundary {:lo 10.0 :hi 800.0}}]}
